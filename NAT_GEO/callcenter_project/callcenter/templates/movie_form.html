@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if movie %}Editar{% else %}Crear{% endif %} Película</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333333;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #FFD100; /* National Geographic Yellow */
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input[type="text"], input[type="number"], input[type="date"], input[type="time"], textarea {
+            width: 560px;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        select {
+            background-color: #FFD100; /* National Geographic Yellow */
+            color: #333;
+            width: 580px;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="file"] {
+            padding: 5px;
+        }
+
+        .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* Espacio entre los botones */
+        max-width: 600px;
+        }
+
+        .button-container a {
+            width: 560px;
+        }
+
+        button[type="submit"], .back-button {
+        display: block; /* Asegura que ocupe toda el ancho */
+        background-color: #FFD100;
+        color: #000;
+        font-weight: bold;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 20px;
+        width: 100%;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    button[type="submit"]:hover, .back-button:hover {
+        background-color: #e0b800;
+        }
+    </style>
+</head>
+<body>
+    <h1>{% if movie %}Editar{% else %}Crear{% endif %} Película</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label for="sucursal">Sucursal:</label>
+        <select id="sucursal" name="sucursal" required>
+            <option value="PlazaOeste" {% if movie.sucursal == "PlazaOeste" %}selected{% endif %}>Plaza Oeste</option>
+            <option value="MallAraucoMaipu" {% if movie.sucursal == "MallAraucoMaipu" %}selected{% endif %}>Mall Arauco Maipu</option>
+            <option value="CinepolisMaipu" {% if movie.sucursal == "CinepolisMaipu" %}selected{% endif %}>Cinepolis Maipu</option>
+            <option value="PlazaVespucio" {% if movie.sucursal == "PlazaVespucio" %}selected{% endif %}>Plaza Vespucio</option>
+        </select>
+
+        <label for="nombre">Nombre:</label>
+        <input type=text id="nombre" name="nombre" required value="{{ movie.nombre }}">
+
+        <label for="genero">Género:</label>
+        <select id="genero" name="genero" required>
+            <option value="Animales Salvajes" {% if movie.genero == "Animales Salvajes" %}selected{% endif %}>Animales Salvajes</option>
+            <option value="Conservación Ambiental" {% if movie.genero == "Conservación Ambiental" %}selected{% endif %}>Conservación Ambiental</option>
+            <option value="Expediciones" {% if movie.genero == "Expediciones" %}selected{% endif %}>Expediciones</option>
+            <option value="Ecosistemas" {% if movie.genero == "Ecosistemas" %}selected{% endif %}>Ecosistemas</option>
+            <option value="Rescates y Rehabilitación" {% if movie.genero == "Rescates y Rehabilitación" %}selected{% endif %}>Rescates y Rehabilitación</option>
+            <option value="Aventuras Submarinas" {% if movie.genero == "Aventuras Submarinas" %}selected{% endif %}>Aventuras Submarinas</option>
+            <option value="Aves del Mundo" {% if movie.genero == "Aves del Mundo" %}selected{% endif %}>Aves del Mundo</option>
+            <option value="Relaciones Interespecies" {% if movie.genero == "Relaciones Interespecies" %}selected{% endif %}>Relaciones Interespecies</option>
+        </select>
+
+        <label for="clasificacion">Clasificación:</label>
+        <select id="clasificacion" name="clasificacion" required>
+            <option value="TE" {% if movie.clasificacion == "TE" %}selected{% endif %}>TE</option>
+            <option value="TE+7" {% if movie.clasificacion == "TE+7" %}selected{% endif %}>TE+7</option>
+            <option value="14+" {% if movie.clasificacion == "14+" %}selected{% endif %}>14+</option>
+            <option value="18+" {% if movie.clasificacion == "18+" %}selected{% endif %}>18+</option>
+        </select>
+
+        <label for="duracion">Duración:</label>
+        <input type="number" id="duracion" name="duracion" value="{{ movie.duracion }}" required>
+
+        <label for="resena">Reseña:</label>
+        <input type="text" id="resena" name="resena" value="{{ movie.resena }}" required>
+
+        <label for="sala">Sala:</label>
+        <select id="sala" name="sala" required>
+            <option value="1" {% if movie.sala == "1" %}selected{% endif %}>1</option>
+            <option value="2" {% if movie.sala == "2" %}selected{% endif %}>2</option>
+            <option value="3" {% if movie.sala == "3" %}selected{% endif %}>3</option>
+            <option value="4" {% if movie.sala == "4" %}selected{% endif %}>4</option>
+            <option value="5" {% if movie.sala == "5" %}selected{% endif %}>5</option>
+            <option value="6" {% if movie.sala == "6" %}selected{% endif %}>6</option>
+            <option value="7" {% if movie.sala == "7" %}selected{% endif %}>7</option>
+        </select>
+
+        <label for="fecha_exhibicion">Fecha exhibición:</label>
+        <input type="date" id="fecha_exhibicion" name="fecha_exhibicion" value="{{ movie.fecha_exhibicion }}" required>
+
+        <label for="hora_exhibicion">Hora exhibición:</label>
+        <input type="time" id="hora_exhibicion" name="hora_exhibicion" value="{{ movie.hora_exhibicion }}" required>
+
+        <label for="valor_ticket">Valor ticket:</label>
+        <input type="number" id="valor_ticket" name="valor_ticket" value="{{ movie.valor_ticket }}" required>
+
+        <label for="imagen">Imagen:</label>
+        <input type="file" id="imagen" name="imagen" value="{{ movie.imagen }}" required>
+
+        <div class="button-container">
+            <button type="submit">{% if movie %}Actualizar{% else %}Crear{% endif %}</button>
+            <a href="{% url 'manage_catalog' %}" class="back-button">Volver al Catálogo</a>
+        </div>
+    </form>
+</body>
+</html>

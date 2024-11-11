@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Catálogo de Películas</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+    .btn-chat {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #FFCC00 !important; /* Fuerza el color de fondo */
+        color: #000000 !important; /* Fuerza el color del texto */
+        text-align: center;
+        border-radius: 5px;
+        text-decoration: none !important; /* Fuerza la eliminación del subrayado */
+        font-weight: bold;
+        position: relative;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 40px);
+        transition: background-color 0.3s;
+        margin-top: auto;
+    }
+
+    .btn-chat:hover {
+        background-color: #FFD633 !important; /* Cambia el color de fondo en hover */
+        color: #000000 !important; /* Asegura que el texto permanezca en negro en hover */
+    }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <h2>Movie Catalog</h2>
+    <nav>
+        <ul>
+            <li><a href="{% url 'create_movie' %}" class="btn-sidebar">Agregar Nueva Película</a></li>
+            <li><a href="#" class="filter">Género</a></li>
+            <li><a href="#" class="filter">Fecha de Estreno</a></li>
+        </ul>
+    </nav>
+
+    <a href="{% url 'admin_chat' %}" class="btn-chat">Ir al Chat</a>
+</div>
+
+<div class="main-content">
+    <header class="header">
+        <h1>Movie Catalog Management</h1>
+    </header>
+
+    <div class="movie-grid">
+        {% for movie in movies %}
+        <div class="movie-card">
+            <img src="{{ movie.imagen }}" alt="Imagen de {{ movie.nombre }}">
+            <div class="movie-details">
+                <h3>{{ movie.nombre }}</h3>
+                <p><strong>Género:</strong> {{ movie.genero }}</p>
+                <p><strong>Fecha de Estreno:</strong> {{ movie.fecha_exhibicion }}</p>
+            </div>
+            <div class="button-group">
+                <a href="{% url 'edit_movie' movie.id %}" class="btn">Editar</a>
+                <a href="{% url 'delete_movie' movie.id %}" class="btn">Eliminar</a>
+            </div>
+        </div>
+        {% empty %}
+            <p>No hay películas para mostrar.</p>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+
+{% extends 'peliculas_base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <h2 class="mb-4" style="color: white;">Detalle de Película: {{ pelicula.nombre }}</h2>
+
+    <div class="card" style="width: 600px;">
+        <div class="card-body">
+            {% if pelicula.imagen %}
+            <div class="cajita-imagen">
+                <img src="{{ pelicula.imagen.url }}" alt="{{ pelicula.nombre }}" class="img-fluid mb-4" style="width: 300px;">
+            </div>
+            
+            {% else %}
+            <p class="mb-4">No hay imagen disponible.</p>
+            {% endif %}
+            <p class="card-text"><strong>Sucursal:</strong> {{ pelicula.sucursal }}</p>
+            <p class="card-text"><strong>Género:</strong> {{ pelicula.genero }}</p>
+            <p class="card-text"><strong>Clasificación:</strong> {{ pelicula.clasificacion }}</p>
+            <p class="card-text"><strong>Duración:</strong> {{ pelicula.duracion }} minutos</p>
+            <p class="card-text"><strong>Reseña:</strong> {{ pelicula.resena }}</p>
+            <p class="card-text"><strong>Sala:</strong> {{ pelicula.sala }}</p>
+            <p class="card-text"><strong>Fecha de Exhibición:</strong> {{ pelicula.fecha_exhibicion }}</p>
+            <p class="card-text"><strong>Hora de Exhibición:</strong> {{ pelicula.hora_exhibicion }}</p>
+            <p class="card-text"><strong>Valor del Ticket:</strong> {{ pelicula.valor_ticket }}</p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+

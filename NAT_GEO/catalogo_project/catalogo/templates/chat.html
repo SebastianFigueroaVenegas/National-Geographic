@@ -1,0 +1,99 @@
+{% extends 'peliculas_base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+<style>
+    .container{
+
+        margin-left: 550px;
+    }
+
+    .chat{
+        border: solid 2px rgb(255, 216, 0);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 700px;
+        height: auto;
+        padding: 20px;
+        background-color: blanchedalmond;
+        border-radius: 8px;
+        margin-top: 20px;
+        box-sizing: border-box;
+
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
+    .chat h2{
+        color: #333;
+    }
+
+    .chat img{
+        width: 30px;
+        height: 30px;
+        margin-left: 25px;
+    }
+
+    .chat-box{
+        width: 600px;
+        border: 2px solid rgb(120, 100, 0);
+        border-radius: 8px;
+        padding: 10px;
+
+        margin-top: 30px;
+        margin-bottom: 20px;
+
+        max-width: 600px; 
+        word-wrap: break-word; 
+        overflow-wrap: break-word;
+        overflow: auto; 
+    }
+
+    .text-bar{
+        width: 600px;
+        padding: 10px;
+        border: 2px solid rgb(120, 100, 0);
+        border-radius: 8px;
+    }
+
+    .text-bar input{
+        width: 500px;
+        
+    }
+
+    .titulo{
+        width: 200px;
+        display: flex;
+        flex-direction: row;   
+    }
+
+</style>
+
+
+<div class="chat">
+
+    <div class="titulo">
+        <h2>Chat</h2>
+        <img src="/static/images/huella.png" alt="">
+    </div>
+
+    <div id="chat-box" class="chat-box">
+        {% for message in messages %}
+            <p><strong>{{ message.sender.username }}:</strong> {{ message.message }}</p>
+        {% endfor %}
+    </div>
+    <form method="post" class="text-bar">
+        {% csrf_token %}
+        <input type="text" name="message" placeholder="Escribe un mensaje...">
+        <button type="submit">Enviar</button>
+    </form>
+</div>
+
+
+{% endblock %}
+

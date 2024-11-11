@@ -1,0 +1,78 @@
+{% extends 'peliculas_base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+  /* En tu archivo styles.css */
+  .card {
+    height: 550px;
+    width: 300px;
+    transition: transform 0.3s ease; 
+  }
+
+  .card:hover {
+    transform: scale(1.05); 
+  }
+
+  .card img {
+    max-height: 100%;
+  }
+
+  .card-body {
+    text-align: center;
+  }
+
+  .card-body h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-body .btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .card{
+    background-color: #fffbe6;
+  }
+</style>
+
+<div>
+    <div class="container mt-5"><h2 style="color: #333;">Peliculas</h2></div>
+    <div class="row mx-auto">
+        {% for movie in movies %}
+        <div class="col-md-4 mb-4">
+            <div class="card mx-auto">
+                {% if movie.imagen %}
+                <img src="{{ movie.imagen.url }}"  class="card-img-top" alt="{{ pelicula.nombre }}" style="max-height: 100%;">
+                {% else %}
+                <img src="{% static 'images/not-found.png' %}" class="card-img-top" alt="Sin imagen" style="max-height: 100%;">
+                {% endif %}
+
+                <div class="card-body text-center">
+
+                    <h5 class="card-title">{{ movie.nombre }}</h2>
+                    <p class="card-text">{{ movie.descripcion }}</p>
+                    <p class="card-text"><strong>Género:</strong> {{ movie.genero }}</p>
+                    <p class="card-text"><strong>Fecha de Estreno:</strong> {{ movie.fecha_exhibicion }}</p>
+
+                    <div class="mx-auto ta-c10">
+                      <a href="{% url 'pelicula-detail' id=movie.id %}" class="btn btn-info w-100">Ver</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p>No hay películas disponibles.</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}
+
+

@@ -1,0 +1,77 @@
+{% extends 'index_base.html' %}
+
+{% block content %}
+
+<style>
+    .container h1{
+        color: #333;
+        margin-top: 100px;
+        font-size: 80px;
+        font-weight: bold;
+    }
+
+    .container p{
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .container-gif{
+        margin-top: 100px;
+    }
+
+    .cajita {
+        border: solid 2px rgb(255, 216, 0);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 1000 px;
+        height: auto;
+        /* padding: 20px; */
+        background-color: blanchedalmond;
+        border-radius: 8px;
+        margin-top: 100px;
+        box-sizing: border-box;
+    }
+
+    .cajita img {
+        width: 80px;
+        height: 81px;
+    }
+
+    .caja-animales {
+        margin-top: 50px;
+        width: 100%;
+        padding: 50px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .caja-animales img{
+        width: 550px;
+        height: auto;
+    }
+</style>
+
+
+<div class="container">
+
+    <div class="cajita">
+        <h1>¡Bienvenido a Nat Geo Wild!</h1>
+        <img src="/static/images/huella.png" alt="">
+        <p style="padding: 20px;">Vive toda la experiencia de Nat Geo Wild, también disfruta las películas y programas emitidas por la TV. Míralo ahora, regístrate para poder acceder al contenido.</p>
+    </div>
+
+    <div class="container-gif">
+        <img src="/static/images/natgeo_wild2.png" alt="Nat Geo Wild">
+    </div>
+
+    <div class="caja-animales">
+        <img src="/static/images/animales.png" alt="">
+        <img src="/static/images/gato.jpg" alt="">
+    </div>
+
+</div>
+
+
+{% endblock %}

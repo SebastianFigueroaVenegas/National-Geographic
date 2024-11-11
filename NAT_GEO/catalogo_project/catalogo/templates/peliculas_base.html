@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+   
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            background-image: url('/static/images/savage-kingdom-wild-animals.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: rgba(255, 255, 255, 0.5);
+            background-blend-mode: overlay;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #fffbe6;
+            border-bottom: solid 2px rgb(255, 216, 0);
+            color: black;
+        }
+
+        nav img {
+            width: 150px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        footer {
+            background-color: black;
+            color: aliceblue;
+            width: 100%;
+            padding: 20px;
+            position: relative;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+
+        .card {
+            margin: 10px;
+            opacity: 0.9;
+        }
+
+        .card-img-top {
+            height: 300px;
+            object-fit: cover;
+            padding: 1px;
+        }
+
+        .link{
+            color: #333;
+            padding: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .link:hover{
+            background-color: #ffcc00;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .container main {
+            flex-grow: 1;
+        }
+
+        .icono-salida{
+            width: 25px;
+            height: 25px;
+            margin-left: 1300px;
+        }
+
+    </style>
+    <title>{% block title %}Django Peliculas{% endblock %}</title>
+
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'catalog_view' %}"><img src="/static/images/natgeowild_logo.png" alt="Nat Geo Wild Logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a  href="{% url 'catalog_view' %}" class="link">Catálogo</a>
+                        <a href="{% url 'chat' %}" class="link">Ir al Chat</a>
+                    </li>
+                    <div class="salida">
+                        <a href="{% url 'logout' %}">
+                            <img src="/static/images/salida.png" alt="Cerrar sesión" class="icono-salida">
+                        </a>
+                    </div>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+    </div>
+
+    <footer>
+        <p>Copyright © 1996-2015 National Geographic Society. Copyright © 2015-2024 National Geographic Partners, LLC. Todos los derechos reservados</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

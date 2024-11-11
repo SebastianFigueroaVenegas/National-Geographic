@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Login - Call Center</title>
+    <style>
+        /* Estilo de fondo para toda la página */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333333;
+            color: #FFFFFF;
+        }
+
+        /* Estilo de la cabecera */
+        .header {
+            background-color: #FFCC00;
+            color: #000000;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Contenedor del formulario */
+        .login-container {
+            background-color: #000000;
+            padding: 30px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+            margin-top: 60px; /* espacio para la cabecera */
+            text-align: center;
+        }
+
+        /* Título del formulario */
+        .login-container h2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #FFD100;
+        }
+
+        /* Estilos para los campos de entrada */
+        .login-container label {
+            display: block;
+            margin-bottom: 8px;
+            text-align: left;
+            color: #FFD100;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 380px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #FFCC00;
+            border-radius: 5px;
+            background-color: #333333;
+            color: #FFFFFF;
+        }
+
+        /* Estilo del botón de inicio de sesión */
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #FFCC00;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-container button:hover {
+            background-color: #FFD633;
+        }
+
+        /* Estilo para el mensaje de error */
+        .error-message {
+            color: #FF5555;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Call Center - Administrador</div>
+
+    <div class="login-container">
+        <h2>Iniciar Sesión - Administrador</h2>
+        <form action="{% url 'admin_login' %}" method="post">
+            {% csrf_token %}
+            <label for="username">Usuario:</label>
+            <input id="username" name="username" required="" type="text"/>
+
+            <label for="password">Contraseña:</label>
+            <input id="password" name="password" required="" type="password"/>
+
+            <button type="submit" class="btn">Iniciar Sesión</button>
+        </form>
+
+        {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

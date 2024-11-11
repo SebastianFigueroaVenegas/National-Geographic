@@ -1,0 +1,58 @@
+{% extends 'index_base.html' %}
+
+{% block content %}
+
+<style>
+    .container{
+        margin-top: 100px;
+    }
+
+    .caja-animales {
+        margin-top: 50px;
+        width: 100%;
+        padding: 50px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .caja-animales img{
+        width: 550px;
+        height: auto;
+    }
+   
+</style>
+
+
+<div class="container">
+    <form method="post" action="{% url 'login' %}" class="forma">
+        {% csrf_token %}
+
+        <h2>Iniciar Sesión</h2>
+
+        <div>
+            <img src="/static/images/usuario4.png" alt="">
+            <input type="text" id="username" name="username" required placeholder="Usuario"><br>
+        </div>
+
+        <div>
+            <img src="/static/images/pass.png" alt="">
+            <input type="password" id="password" name="password" required placeholder="Contraseña"><br>
+        </div>
+        <div class="button-box">
+            <a href="{% url 'index' %}">Atras</a>
+            <button type="submit">Ingresar</button>
+        </div>
+    </form>
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+
+    <div class="caja-animales">
+        <img src="/static/images/jirafa.jpg" alt="">
+        <img src="/static/images/leon.jpg" alt="">
+    </div>
+
+</div>
+{% endblock %}
+    
+

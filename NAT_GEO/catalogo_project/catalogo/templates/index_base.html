@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a Nat Geo Wild</title>
+    <style>
+
+        body {
+            background-image: url('/static/images/savage-kingdom-wild-animals.gif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: rgba(255, 255, 255, 0.5);
+            background-blend-mode: overlay;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+            min-height: 100vh;
+            position: relative;
+        }
+
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            min-height: 100vh; 
+            text-align: center;
+        }
+
+
+        header {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fffbe6;
+            border-bottom: solid 2px rgb(255, 216, 0);
+        }
+
+        header img {
+            width: 150px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .main-container h1 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .main-container p {
+            max-width: 600px;
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+
+        .container-gif {
+            display: flex;
+            border: 2px solid rgb(255, 216, 0);
+            border-radius: 4px;
+            display: inline-block; 
+            overflow: hidden;
+            max-width: 800px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container-gif img {
+            display: block;
+            max-width: 100%;
+            max-height: 300px;
+        }
+
+
+        .forma {
+            border: solid 2px rgb(255, 216, 0);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 500px;
+            height: auto;
+            padding: 20px;
+            background-color: blanchedalmond;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-sizing: border-box;
+        }
+
+        .forma label {
+            font-size: 1em;
+            color: #333;
+        }
+
+        .forma input {
+            width: 300px;
+            padding: 8px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+
+        .button-box button {
+            width: 100px;
+            padding: 10px;
+            font-size: 1em;
+            margin: 5px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #333;
+            border: #333 solid 1px;
+            background-color: rgb(255, 216, 0);
+        }
+
+        .button-box a{
+            width: 100px;
+            padding: 10px;
+            font-size: 1em;
+            margin: 5px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #333;
+            border: #333 solid 1px;
+            background-color: rgb(255, 216, 0);
+            text-decoration: none;
+        }
+
+        .button-box button:hover {
+            background-color: #ffcc00;
+        }
+
+        .button-box a:hover {
+            background-color: #ffcc00;
+        }
+
+        main {
+            padding-bottom: 60px;
+        }
+
+
+        footer {
+            background-color: black;
+            color: aliceblue;
+            width: 100%;
+            padding: 20px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .nav-link{
+            color: #333;
+            padding: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav-link:hover{
+            background-color: #ffcc00;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="{% url 'index' %}"><img src="/static/images/natgeowild_logo.png" alt="Nat Geo Wild Logo"></a>
+        <a class="nav-link" href="{% url 'registro' %}">Registrate</a>
+        <a class="nav-link" href="{% url 'login' %}">Ingresa</a>
+    </header>
+
+    <div class="container">
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+    </div>
+    <footer>
+        <p>Copyright © 1996-2015 National Geographic Society. Copyright © 2015-2024 National Geographic Partners, LLC. Todos los derechos reservados</p>
+    </footer>
+
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'True') {
+            alert("¡Registro exitoso!");
+            // Opcional: Quitar el parámetro de la URL después de mostrar el mensaje
+            window.history.replaceState(null, null, window.location.pathname);
+        }
+    </script>
+</body>
+
+</html>
